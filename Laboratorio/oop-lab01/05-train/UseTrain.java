@@ -24,5 +24,20 @@ class UseTrain {
          * 5) Prenotare nuovamente dei posti e stampare le nuove percentuali di
          * occupazione
          */
+
+        Train train = new Train();
+        train.build(10, 20);
+
+        train.reserveFirstClassSeats(2);
+        System.out.println(train.toStringRepr());
+
+        train.reserveSecondClassSeats(3);
+        System.out.println(train.toStringRepr());
+
+        train.reserveFirstClassSeats(3);
+        System.out.println(train.toStringRepr());
+
+        train.reserveSecondClassSeats(5);
+        System.out.println(train.toStringRepr());
     }
 }
