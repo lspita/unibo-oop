@@ -42,11 +42,11 @@ class ComplexNum {
 
         String imRep = "";
         if (this.im > 0) {
-            imRep = String.format("+%.3fi", this.im);
+            imRep = "+" + this.im + "i";
         } else if (this.im < 0) {
-            imRep = String.format("%.3fi", this.im);
+            imRep = this.im + "i";
         }
 
-        return String.format("%.3f%s", this.re, imRep);
+        return this.re + imRep;
     }
 }
