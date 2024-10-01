@@ -17,10 +17,14 @@ class TestCommandLine {
          * $ java it.unibo.cli.arguments.test.TestCommandLine Welcome to the lab
          *
          * The provided arguments are:
-         *  * Welcome, 7 characters long
-         *  * to, 2 characters long
-         *  * the, 3 characters long
-         *  * lab, 3 characters long
+         * * Welcome, 7 characters long
+         * * to, 2 characters long
+         * * the, 3 characters long
+         * * lab, 3 characters long
          */
+
+        for (String arg : args) {
+            System.out.println(arg + ", " + arg.length() + " characters long");
+        }
     }
 }
