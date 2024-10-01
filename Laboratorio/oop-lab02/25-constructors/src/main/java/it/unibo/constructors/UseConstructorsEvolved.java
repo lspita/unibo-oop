@@ -10,5 +10,14 @@ class UseConstructorsEvolved {
         // nSCSeats)
         // - nFCSeats = 20; nSCSeats= 200;
         // - nFCSeats = 35; nSCSeats= 165;
+
+        Train train1 = new Train();
+        train1.printTrainInfo();
+
+        Train train2 = new Train(20, 200);
+        train2.printTrainInfo();
+
+        Train train3 = new Train(35, 165);
+        train3.printTrainInfo();
     }
 }

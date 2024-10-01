@@ -18,6 +18,75 @@ class Smartphone {
     boolean has3G;
     boolean hasNFC;
 
+    public Smartphone(
+        int nCPU,
+        int ram,
+        int sdSize,
+        String brand,
+        String model,
+        boolean hasGPS,
+        boolean has3G,
+        boolean hasNFC
+    ) {
+        this.nCPU = nCPU;
+        this.ram = ram;
+        this.sdSize = sdSize;
+        this.brand = brand;
+        this.model = model;
+        this.hasGPS = hasGPS;
+        this.has3G = has3G;
+        this.hasNFC = hasNFC;
+    }
+        
+    public Smartphone(String brand, String model, boolean hasGPS, boolean has3g) {
+        this(
+            DEF_N_CPU,
+            DEF_RAM_SIZE,
+            DEF_SD_SIZE,
+            brand,
+            model,
+            hasGPS,
+            has3g,
+            DEF_HAS_NFC
+        );
+    }
+
+    public Smartphone(String brand, String model, int sdSize) {
+        this(
+            DEF_N_CPU,
+            DEF_RAM_SIZE,
+            sdSize,
+            brand,
+            model,
+            DEF_HAS_GPS,
+            DEF_HAS_3G,
+            DEF_HAS_NFC
+        );
+    }
+
+    public Smartphone(String brand, String model, boolean hasNFC) {
+        this(
+            DEF_N_CPU,
+            DEF_RAM_SIZE,
+            DEF_SD_SIZE,
+            brand,
+            model,
+            DEF_HAS_GPS,
+            DEF_HAS_3G,
+            hasNFC
+        );
+    }
+
+    public Smartphone(String brand, String model) {
+        this( 
+            brand,
+            model,
+            DEF_SD_SIZE
+        );
+    }
+
+
+
     void printStringRep() {
         System.out.println("Smartphone info:");
         System.out.println("n CPU(s): " + this.nCPU);
@@ -42,5 +111,31 @@ class Smartphone {
 
         // 5) Utilizzare il metodo printStringRep per stampare in standard
         // output le informazioni di ciascun telefono
+
+        Smartphone htcOne = new Smartphone("HTC", "One", 1024);
+        htcOne.printStringRep();
+
+        Smartphone samsungGalaxyNote3 = new Smartphone(
+            4,
+            2048,
+            8192,
+            "Samsung",
+            "Galaxy Note 3",
+            true,
+            true,
+            true
+        );
+        samsungGalaxyNote3.printStringRep();
+
+        Smartphone appleIphone5S = new Smartphone("Apple", "iPhone 5S", true);
+        appleIphone5S.printStringRep();
+
+        Smartphone googleNexus4 = new Smartphone(
+            "Google",
+            "Nexus 4",
+            true, 
+            true
+        );
+        googleNexus4.printStringRep();
     }
 }
