@@ -1,6 +1,7 @@
 package it.unibo.arrays;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 class WorkWithArrays {
 
@@ -14,28 +15,119 @@ class WorkWithArrays {
         return occurrencies;
     }
 
-    static int[] evenElements(final int[] array) {
-        return null;
+    static int[] evenElements(final int[] array) {        
+        final int nEvens = (int) Math.ceil((double) array.length / 2.0);
+        final int[] result = new int[nEvens];
+
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (i % 2 == 0) {
+                result[j] = array[i];
+                j++;
+            }
+        }
+
+        return result;
     }
 
     static int[] oddElements(final int[] array) {
-        return null;
+        final int nOdd = (int) Math.floor((double) array.length / 2.0);
+        final int[] result = new int[nOdd];
+
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (i % 2 != 0) {
+                result[j] = array[i];
+                j++;
+            }
+        }
+
+        return result;
     }
 
     static int mostRecurringElement(final int[] array) {
-        return 0;
+        HashMap<Integer, Integer> occurrencies = new HashMap<Integer, Integer>(); 
+        Integer maxVal = null;
+
+        for (int x: array) {
+            int currentOccurencies = occurrencies.getOrDefault(x, 0);
+            occurrencies.put(x, currentOccurencies + 1);
+        
+            if (maxVal == null || occurrencies.get(x) > occurrencies.get(maxVal)) {
+                maxVal = x;
+            }
+        }
+
+        return maxVal;
     }
 
     static int[] sortArray(final int[] array, final boolean isDescending) {
-        return array;
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+
+        if (result.length < 2) {
+            return result;
+        }
+
+        boolean loop = true;
+        
+        while (loop) {
+            loop = false;
+            for (int i = 0; i < result.length - 1; i++) {
+                if (
+                    (!isDescending && result[i] > result[i + 1]) ||
+                    (isDescending && result[i] < result[i + 1])
+                ){
+                    int swap = result[i];
+                    result[i] = result[i + 1];
+                    result[i + 1] = swap;
+
+                    loop = true;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    static double average(final int[] array) {
+        double sum = 0.0;
+        for (int x : array) {
+            sum += x;
+        }
+
+        return sum / (double) array.length;
     }
 
     static double computeVariance(final int[] array) {
-        return 0;
+        final double avg = average(array);
+
+        double sum = 0.0;
+        for (int x : array) {
+            sum += Math.pow((double)x - avg, 2);
+        }
+
+        return sum / (double)array.length;
     }
 
     static int[] revertUpTo(final int[] array, final int element) {
-        return null;
+        final int[] result = new int[array.length];
+        int targetIndex = 0;
+        
+        while (targetIndex < array.length && array[targetIndex] != element) {
+            targetIndex++;
+        }
+        
+        for (int i = targetIndex, j = 0; i >= 0; i--) {
+            result[i] = array[j];
+            j++;
+        }
+
+        for (int i = targetIndex + 1; i < array.length; i++) {
+            result[i] = array[i];
+        }
+
+        return result;
     }
 
     static int[] duplicateElements(final int[] array, final int times) {
@@ -55,6 +147,7 @@ class WorkWithArrays {
         return countOccurrencies(new int[] { 1, 2, 3, 4 }, 1) == 1
             && countOccurrencies(new int[] { 0, 2, 3, 4 }, 1) == 0
             && countOccurrencies(new int[] { 7, 4, 1, 9, 3, 1, 5 }, 2) == 0
+            && countOccurrencies(new int[] { 1, 2, 3, 3, 4, 5 }, 3) == 2
             && countOccurrencies(new int[] { 1, 2, 1, 3, 4, 1 }, 1) == 3;
     }
 

@@ -2,18 +2,38 @@ package it.unibo.arrays;
 
 class MyCircularArray {
 
-    int[] array;
+    static final int DEF_SIZE = 10;
 
-    MyCircularArray() {
-    }
+    int[] array;
+    int currentIndex;
 
     MyCircularArray(int size) {
+        this.array = new int[size];
+        this.resetIndex();
+    }
+
+    MyCircularArray() {
+        this(DEF_SIZE);
+    }
+
+    void resetIndex() {
+        this.currentIndex = 0;
     }
 
     void add(final int elem) {
+        this.array[this.currentIndex] = elem;
+        this.currentIndex++;
+        if (this.currentIndex == this.array.length) {
+            this.resetIndex();
+        }
     }
 
     void reset() {
+        for (int i = 0; i < this.array.length; i++) {
+            this.array[i] = 0;
+        }
+
+        this.resetIndex();
     }
 
     void printArray() {
@@ -21,7 +41,7 @@ class MyCircularArray {
         for (int i = 0; i < this.array.length - 1; i++) {
             System.out.print(this.array[i] + ",");
         }
-        System.out.print(this.array[this.array.length - 1] + "]");
+        System.out.println(this.array[this.array.length - 1] + "]");
     }
 
     public static void main(final String[] args) {
@@ -40,5 +60,26 @@ class MyCircularArray {
 
         // 6) Aggiungere altri elementi a piacere e stampare il contenuto
         // dell'array circolare
+
+        MyCircularArray array = new MyCircularArray();
+
+        for (int i = 1; i <= 10; i++) {
+            array.add(i);
+        }
+        array.printArray();
+
+        for (int i = 11; i <= 15; i++) {
+            array.add(i);
+        }
+        array.printArray();
+
+        array.reset();
+        array.printArray();
+
+
+        for (int i = 16; i <= 30; i++) {
+            array.add(i);
+        }
+        array.printArray();
     }
 }
