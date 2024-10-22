@@ -3,6 +3,7 @@ package it.unibo.collections.sets;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Iterator;
 
 /**
  * Example class using {@link java.util.Set}.
@@ -50,11 +51,10 @@ public final class UseSet {
          * Note: the method removeIf(Predicate) is not allowed.
          */
 
-        final Set<String> setLoop = new TreeSet<>();
-        setLoop.addAll(set);
-        for (String s : setLoop) {
+        for (final Iterator<String> iter = set.iterator(); iter.hasNext();) {
+            final String s = iter.next();
             if (Integer.parseInt(s) % 3 == 0) {
-                set.remove(s);
+                iter.remove();
             }
         }
 
