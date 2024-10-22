@@ -2,6 +2,8 @@ package it.unibo.collections.design;
 
 import it.unibo.collections.design.api.Product;
 import it.unibo.collections.design.api.Warehouse;
+import it.unibo.collections.design.classes.ComparableProduct;
+import it.unibo.collections.design.classes.OrderedWarehouse;
 
 import java.util.List;
 import java.util.Set;
@@ -14,31 +16,34 @@ import static it.unibo.collections.test.Assertions.assertContentEqualsInOrder;
  */
 public final class UseOrderedWarehouse {
 
-    private UseOrderedWarehouse() { }
+    private UseOrderedWarehouse() {
+    }
 
     /**
-     * @param args
-     *            unused
+     * @param args unused
      */
     public static void main(final String[] args) {
         /*
-         * 4. First, solve the points in UseWarehouse, and ask the teacher for a correction.
+         * 4. First, solve the points in UseWarehouse, and ask the teacher for a
+         * correction.
          * Then continue with these exercises.
          */
         /*
          * 5. Implement a new class ComparableProduct implements Comparable<Product>
          */
         /*
-         * 6. Implement OrderedWarehouse in such a way that `allProducts()` returns the products in lexicographic
+         * 6. Implement OrderedWarehouse in such a way that `allProducts()` returns the
+         * products in lexicographic
          * order. Prefer solutions that reuse existing code.
          */
         /*
-         * 7. Fix the construction of objects and make sure that the test passes, before asking for a correction.
+         * 7. Fix the construction of objects and make sure that the test passes, before
+         * asking for a correction.
          */
-        final Product p1 = null; // new ComparableProduct("Apple", 100);
-        final Product p2 = null; // new ComparableProduct("Banana", 30);
-        final Product p3 = null; // new ComparableProduct("Watermelon", 10);
-        final Warehouse warehouse = null; // new OrderedWarehouse();
+        final Product p1 = new ComparableProduct("Apple", 100);
+        final Product p2 = new ComparableProduct("Banana", 30);
+        final Product p3 = new ComparableProduct("Watermelon", 10);
+        final Warehouse warehouse = new OrderedWarehouse();
         // Populate the warehouse
         warehouse.addProduct(p3);
         assertContentEqualsInOrder(List.of(p3), warehouse.allProducts());

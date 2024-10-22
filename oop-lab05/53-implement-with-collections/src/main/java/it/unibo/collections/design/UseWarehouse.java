@@ -1,7 +1,9 @@
 package it.unibo.collections.design;
 
 import it.unibo.collections.design.api.Product;
+import it.unibo.collections.design.classes.ProductImpl;
 import it.unibo.collections.design.api.Warehouse;
+import it.unibo.collections.design.classes.WarehouseImpl;
 
 import java.util.Set;
 
@@ -18,7 +20,7 @@ public final class UseWarehouse {
 
     /**
      * @param args
-     *            unused
+     *             unused
      */
     public static void main(final String[] args) {
         /*
@@ -35,15 +37,16 @@ public final class UseWarehouse {
          * 2. ProductImpl implements Product. Remember that two products are the
          * same if their name is the same.
          *
-         * Read VERY carefully the comments in the interfaces and use them to prepare the implementations.
+         * Read VERY carefully the comments in the interfaces and use them to prepare
+         * the implementations.
          */
         /*
          * 3. Fix the construction of objects in this test.
          */
-        final Product p1 = null; // new ProductImpl("p1", 100);
-        final Product p2 = null; // new ProductImpl("p2", 30);
-        final Product p3 = null; // new ProductImpl("p3", 10);
-        final Warehouse warehouse = null; // new WarehouseImpl();
+        final Product p1 = new ProductImpl("p1", 100);
+        final Product p2 = new ProductImpl("p2", 30);
+        final Product p3 = new ProductImpl("p3", 10);
+        final Warehouse warehouse = new WarehouseImpl();
         warehouse.addProduct(p3);
         assertContentEqualsInAnyOrder(Set.of(p3), warehouse.allProducts());
         warehouse.addProduct(p1);
