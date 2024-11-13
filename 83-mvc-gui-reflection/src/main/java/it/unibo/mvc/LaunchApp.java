@@ -48,7 +48,7 @@ public final class LaunchApp {
             final Class<?> rawClass = Class.forName(fullName);
             if (!List.of(rawClass.getInterfaces()).contains(DrawNumberView.class)) {
                 throw new IllegalArgumentException(
-                    fullName + "does not implement" + DrawNumberView.class.getName()
+                    fullName + " does not implement " + DrawNumberView.class.getName()
                 );
             }
             @SuppressWarnings("unchecked") // Implementation of interface is checked before
