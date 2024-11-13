@@ -17,14 +17,13 @@ import it.unibo.deathnote.impl.DeathNoteImplementation;
 
 class TestDeathNote {
     private DeathNote dn;
-    private String mainName = "Nicholas Magi";
-    private String mainDeathCause = "karting accident";
-    private String mainDeathDetails = "Diarrhea";
-    private String otherName = "Matteo Tonelli";
-    private String otherDeathCause = "stomach disease";
-
-    private String DEFAULT_CAUSE = "heart attack";
-    private String DEFAULT_DETAILS = "";
+    private static final String MAIN_NAME = "Nicholas Magi";
+    private static final String MAIN_DEATH_CAUSE = "karting accident";
+    private static final String MAIN_DEATH_DETAILS = "Diarrhea";
+    private static final String OTHER_NAME = "Matteo Tonelli";
+    private static final String OTHER_DEATH_CAUSE = "stomach disease";
+    private static final String DEFAULT_CAUSE = "heart attack";
+    private static final String DEFAULT_DETAILS = "";
     private static final long DEATH_CAUSE_TIMEOUT_MS = 1000;
 
     private Set<Integer> invalidRuleNumbers = Set.of(
@@ -71,10 +70,10 @@ class TestDeathNote {
      */
     @Test
     public void testHumanKill() {
-        assertFalse(dn.isNameWritten(mainName));
-        dn.writeName(mainName);
-        assertTrue(dn.isNameWritten(mainName));
-        assertFalse(dn.isNameWritten(otherName));
+        assertFalse(dn.isNameWritten(MAIN_NAME));
+        dn.writeName(MAIN_NAME);
+        assertTrue(dn.isNameWritten(MAIN_NAME));
+        assertFalse(dn.isNameWritten(OTHER_NAME));
         assertFalse(dn.isNameWritten(""));
     }
 
@@ -86,16 +85,16 @@ class TestDeathNote {
     public void testCauseOfDeath() throws InterruptedException {
         assertThrows(
             IllegalStateException.class, 
-            () -> dn.writeDeathCause(mainDeathCause)
+            () -> dn.writeDeathCause(MAIN_DEATH_CAUSE)
         );
-        dn.writeName(mainName);
-        assertEquals(dn.getDeathCause(mainName), DEFAULT_CAUSE);
-        dn.writeName(mainName);
-        assertTrue(dn.writeDeathCause(mainDeathCause));
-        assertEquals(dn.getDeathCause(mainName), mainDeathCause);
+        dn.writeName(MAIN_NAME);
+        assertEquals(dn.getDeathCause(MAIN_NAME), DEFAULT_CAUSE);
+        dn.writeName(MAIN_NAME);
+        assertTrue(dn.writeDeathCause(MAIN_DEATH_CAUSE));
+        assertEquals(dn.getDeathCause(MAIN_NAME), MAIN_DEATH_CAUSE);
         Thread.sleep(DEATH_CAUSE_TIMEOUT_MS);
-        assertFalse(dn.writeDeathCause(otherDeathCause));
-        assertEquals(dn.getDeathCause(mainName), mainDeathCause);
+        assertFalse(dn.writeDeathCause(OTHER_DEATH_CAUSE));
+        assertEquals(dn.getDeathCause(MAIN_NAME), MAIN_DEATH_CAUSE);
     }
 
     /**
