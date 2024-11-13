@@ -16,9 +16,11 @@ public final class DeathNoteImplementation implements DeathNote {
         
         private long timeout;
         private long startTime;
+        private static final long UNASSIGNED_START_TIME = -1;
 
         private TimedOperation(final long timeout) {
             this.timeout = timeout;
+            this.startTime = UNASSIGNED_START_TIME;
         }
 
         /**
@@ -26,7 +28,9 @@ public final class DeathNoteImplementation implements DeathNote {
          * @return `true` if operation has not timed out, `false` otherwise
          */
         public boolean isValid() {
-            return System.currentTimeMillis() - this.startTime <= this.timeout;
+            return 
+                this.startTime != UNASSIGNED_START_TIME && 
+                System.currentTimeMillis() - this.startTime <= this.timeout;
         }
 
         /**

@@ -17,14 +17,20 @@ import it.unibo.deathnote.impl.DeathNoteImplementation;
 
 class TestDeathNote {
     private DeathNote dn;
-    private static final String MAIN_NAME = "Nicholas Magi";
-    private static final String MAIN_DEATH_CAUSE = "karting accident";
-    private static final String MAIN_DEATH_DETAILS = "Diarrhea";
-    private static final String OTHER_NAME = "Matteo Tonelli";
-    private static final String OTHER_DEATH_CAUSE = "stomach disease";
+    private static final String NAME_1 = "Nicholas Magi";
+    private static final String NAME_2 = "Matteo Tonelli";
+    private static final String NAME_3 = "Ludovico Spitaleri";
+    
     private static final String DEFAULT_CAUSE = "heart attack";
+    private static final String CAUSE_1 = "karting accident";
+    private static final String CAUSE_2 = "diarrhea";
+    
     private static final String DEFAULT_DETAILS = "";
-    private static final long DEATH_CAUSE_TIMEOUT_MS = 1000;
+    private static final String DETAILS_1 = "ran for too long";
+    private static final String DETAILS_2 = "a lot";
+    
+    private static final long CAUSE_TIMEOUT_MS = 1000;
+    private static final long DETAILS_TIMEOUT_MS = 6400;
 
     private Set<Integer> invalidRuleNumbers = Set.of(
         0, 
@@ -70,10 +76,10 @@ class TestDeathNote {
      */
     @Test
     public void testHumanKill() {
-        assertFalse(dn.isNameWritten(MAIN_NAME));
-        dn.writeName(MAIN_NAME);
-        assertTrue(dn.isNameWritten(MAIN_NAME));
-        assertFalse(dn.isNameWritten(OTHER_NAME));
+        assertFalse(dn.isNameWritten(NAME_1));
+        dn.writeName(NAME_1);
+        assertTrue(dn.isNameWritten(NAME_1));
+        assertFalse(dn.isNameWritten(NAME_2));
         assertFalse(dn.isNameWritten(""));
     }
 
@@ -85,16 +91,21 @@ class TestDeathNote {
     public void testCauseOfDeath() throws InterruptedException {
         assertThrows(
             IllegalStateException.class, 
-            () -> dn.writeDeathCause(MAIN_DEATH_CAUSE)
+            () -> dn.writeDeathCause(null)
         );
-        dn.writeName(MAIN_NAME);
-        assertEquals(dn.getDeathCause(MAIN_NAME), DEFAULT_CAUSE);
-        dn.writeName(MAIN_NAME);
-        assertTrue(dn.writeDeathCause(MAIN_DEATH_CAUSE));
-        assertEquals(dn.getDeathCause(MAIN_NAME), MAIN_DEATH_CAUSE);
-        Thread.sleep(DEATH_CAUSE_TIMEOUT_MS);
-        assertFalse(dn.writeDeathCause(OTHER_DEATH_CAUSE));
-        assertEquals(dn.getDeathCause(MAIN_NAME), MAIN_DEATH_CAUSE);
+        assertThrows(
+            IllegalStateException.class, 
+            () -> dn.writeDeathCause(CAUSE_1)
+        );
+        dn.writeName(NAME_1);
+        assertEquals(dn.getDeathCause(NAME_1), DEFAULT_CAUSE);
+        dn.writeName(NAME_2);
+        assertTrue(dn.writeDeathCause(CAUSE_1));
+        assertEquals(dn.getDeathCause(NAME_2), CAUSE_1);
+        dn.writeName(NAME_3);
+        Thread.sleep(CAUSE_TIMEOUT_MS);
+        assertFalse(dn.writeDeathCause(CAUSE_2));
+        assertEquals(dn.getDeathCause(NAME_3), DEFAULT_CAUSE);
     }
 
     /**
@@ -102,7 +113,27 @@ class TestDeathNote {
      * and 40 milliseconds of writing the death's details, it will happen
      */
     @Test
-    public void testDeathDetails() {
-        // TODO Incoherent
+    public void testDeathDetails() throws InterruptedException {
+        assertThrows(
+            IllegalStateException.class,
+            () -> dn.writeDetails(null)
+        );
+        assertThrows(
+            IllegalStateException.class,
+            () -> dn.writeDetails(DETAILS_1)
+        );
+        dn.writeName(NAME_1);
+        assertEquals(dn.getDeathDetails(NAME_1), DEFAULT_DETAILS);
+        dn.writeName(NAME_2);
+        assertFalse(dn.writeDetails(DETAILS_1));
+        assertEquals(dn.getDeathDetails(NAME_2), DEFAULT_DETAILS);
+        assertTrue(dn.writeDeathCause(CAUSE_1));
+        assertTrue(dn.writeDetails(DETAILS_1));
+        assertEquals(dn.getDeathDetails(NAME_2), DETAILS_1);
+        dn.writeName(NAME_3);
+        assertTrue(dn.writeDeathCause(CAUSE_2));
+        Thread.sleep(DETAILS_TIMEOUT_MS);
+        assertFalse(dn.writeDetails(DETAILS_2));
+        assertEquals(dn.getDeathDetails(NAME_3), DEFAULT_DETAILS);
     }
 }
