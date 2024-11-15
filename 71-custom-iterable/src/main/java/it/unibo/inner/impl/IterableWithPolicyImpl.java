@@ -1,6 +1,5 @@
 package it.unibo.inner.impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -44,7 +43,7 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
      * @param filter   to use on the elements
      */
     public IterableWithPolicyImpl(final T[] elements, final Predicate<T> filter) {
-        this.elements = new ArrayList<>(Arrays.asList(elements));
+        this.elements = List.of(elements);
         this.setIterationPolicy(filter);
     }
 
