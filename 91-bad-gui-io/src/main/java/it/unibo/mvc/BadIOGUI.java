@@ -1,10 +1,5 @@
 package it.unibo.mvc;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,12 +10,19 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  * This class is a simple application that writes a random number on a file.
- * 
+ *
  * This application does not exploit the model-view-controller pattern, and as
  * such is just to be used to learn the basics, not as a template for your
  * applications.
@@ -34,6 +36,9 @@ public class BadIOGUI {
     private static final int PROPORTION = 5;
     private final Random randomGenerator = new Random();
     private final JFrame frame = new JFrame(TITLE);
+    private static final String WRITE_BUTTON_TEXT = "Write on file";
+    private static final String READ_BUTTON_TEXT = "Read from file";
+    private static final String READ_BUTTON_EVENT_MESSAGE = "Read button clicked!";
 
     /**
      * Creates a new BadIOGUI.
@@ -41,16 +46,40 @@ public class BadIOGUI {
     public BadIOGUI() {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
-        final JButton write = new JButton("Write on file");
+        final JButton write = new JButton(WRITE_BUTTON_TEXT);
         canvas.add(write, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Ex 1.01
+        final JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+        canvas.add(mainPanel, BorderLayout.CENTER);
+        mainPanel.add(write);
+
+        // Ex 1.02
+        final JButton read = new JButton(READ_BUTTON_TEXT);
+        mainPanel.add(read);
+        read.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.out.println(READ_BUTTON_EVENT_MESSAGE); //NOPMD required for exercise
+                // Ex 1.03
+                try {
+                    final List<String> lines = Files.readAllLines(Path.of(PATH));
+                    System.out.println(String.join("\n", lines)); //NOPMD required for exercise
+                } catch (IOException e) {
+                    handleIOException(e);
+                }
+            }
+        });
+
         /*
          * Handlers
          */
         write.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(final ActionEvent e) {
+            public void actionPerformed(final ActionEvent ae) {
                 /*
                  * This would be VERY BAD in a real application.
                  * 
@@ -60,12 +89,16 @@ public class BadIOGUI {
                  */
                 try (PrintStream ps = new PrintStream(PATH, StandardCharsets.UTF_8)) {
                     ps.print(randomGenerator.nextInt());
-                } catch (IOException e1) {
-                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
-                    e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                } catch (IOException e) {
+                    handleIOException(e);
                 }
             }
         });
+    }
+
+    private void handleIOException(final IOException e) {
+        JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace(); // NOPMD: allowed as this is just an exercise
     }
 
     private void display() {
@@ -87,6 +120,9 @@ public class BadIOGUI {
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
+        // Ex 1.01
+        frame.pack();
+
         /*
          * OK, ready to push the frame onscreen
          */
@@ -99,6 +135,6 @@ public class BadIOGUI {
      * @param args ignored
      */
     public static void main(final String... args) {
-       new BadIOGUI().display();
+        new BadIOGUI().display();
     }
 }
