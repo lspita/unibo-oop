@@ -1,8 +1,6 @@
 package it.unibo.mvc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -10,16 +8,8 @@ import java.util.List;
  */
 public final class SimpleController implements Controller {
 
-    private final List<String> printHistory = newHistory();
+    private final List<String> printHistory = new ArrayList<>();
     private String currentMessage;
-
-    private List<String> newHistory(final String... elements) {
-        return newHistory(Arrays.asList(elements));
-    }
-
-    private List<String> newHistory(final Collection<String> elements) {
-        return new ArrayList<>(elements);
-    }
 
     /**
      * {@inheritDoc}
@@ -42,7 +32,7 @@ public final class SimpleController implements Controller {
      */
     @Override
     public List<String> getHistory() {
-        return newHistory(this.printHistory);
+        return List.copyOf(this.printHistory);
     }
 
     /**
