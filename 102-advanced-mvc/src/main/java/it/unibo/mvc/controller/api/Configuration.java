@@ -1,12 +1,11 @@
-package it.unibo.mvc;
-
+package it.unibo.mvc.controller.api;
 
 /**
  * Encapsulates the concept of configuration.
  */
 public final class Configuration {
 
-    private final int max; 
+    private final int max;
     private final int min;
     private final int attempts;
 
@@ -46,20 +45,20 @@ public final class Configuration {
 
     /**
      * Pattern builder: used here because:
-     * 
-     * - all the parameters of the Configuration class have a default value, which
-     * means that we would like to have all the possible combinations of
+     *
+     * - all the parameters of the Configuration class have a default value,
+     * which means that we would like to have all the possible combinations of
      * constructors (one with three parameters, three with two parameters, three
      * with a single parameter), which are way too many and confusing to use
-     * 
-     * - moreover, it would be impossible to provide all of them, because they are
-     * all of the same type, and only a single constructor can exist with a given
-     * list of parameter types.
-     * 
-     * - the Configuration class has three parameters of the same type, and it is
-     * unclear to understand, in a call to its contructor, which is which. By using
-     * the builder, we emulate the so-called "named arguments".
-     * 
+     *
+     * - moreover, it would be impossible to provide all of them, because they
+     * are all of the same type, and only a single constructor can exist with a
+     * given list of parameter types.
+     *
+     * - the Configuration class has three parameters of the same type, and it
+     * is unclear to understand, in a call to its contructor, which is which. By
+     * using the builder, we emulate the so-called "named arguments".
+     *
      */
     public static class Builder {
 
@@ -111,4 +110,3 @@ public final class Configuration {
         }
     }
 }
-

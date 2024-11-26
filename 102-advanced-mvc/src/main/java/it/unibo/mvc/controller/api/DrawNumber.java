@@ -1,4 +1,6 @@
-package it.unibo.mvc;
+package it.unibo.mvc.controller.api;
+
+import it.unibo.mvc.model.DrawResult;
 
 /**
  * This class models a draw number game.
@@ -13,7 +15,7 @@ public interface DrawNumber {
 
     /**
      * Guesses a number.
-     * 
+     *
      * @param n the guess
      * @return the result of the guess
      */

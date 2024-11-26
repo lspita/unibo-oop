@@ -1,4 +1,4 @@
-package it.unibo.mvc;
+package it.unibo.mvc.view.api;
 
 /**
  * Controller interface.
@@ -7,7 +7,7 @@ public interface DrawNumberViewObserver {
 
     /**
      * Makes a guess.
-     * 
+     *
      * @param n the attempt
      */
     void newAttempt(int n);

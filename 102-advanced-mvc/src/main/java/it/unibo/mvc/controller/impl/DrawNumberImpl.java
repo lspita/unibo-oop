@@ -1,6 +1,9 @@
-package it.unibo.mvc;
+package it.unibo.mvc.controller.impl;
 
 import java.util.Random;
+
+import it.unibo.mvc.controller.api.DrawNumber;
+import it.unibo.mvc.model.DrawResult;
 
 /**
  *
