@@ -14,6 +14,8 @@ import it.unibo.mvc.view.api.DrawNumberViewObserver;
  */
 public final class PrintStreamView implements DrawNumberView {
 
+    private static final String ERROR_PREFIX = "[ERR] ";
+
     private final PrintStream out;
 
     /**
@@ -57,6 +59,11 @@ public final class PrintStreamView implements DrawNumberView {
     @Override
     public void result(final DrawResult res) {
         out.println(res.getDescription());
+    }
+
+    @Override
+    public void displayError(String message) {
+        out.println(ERROR_PREFIX + message);
     }
 
 }
