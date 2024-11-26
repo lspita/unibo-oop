@@ -1,4 +1,4 @@
-package it.unibo.mvc.controller.api;
+package it.unibo.mvc.controller.api.config;
 
 /**
  * Encapsulates the concept of configuration.
