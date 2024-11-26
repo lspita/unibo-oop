@@ -1,11 +1,14 @@
 package it.unibo.mvc;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
 import it.unibo.mvc.controller.api.DrawNumber;
+import it.unibo.mvc.controller.api.config.Configuration;
 import it.unibo.mvc.controller.impl.DrawNumberImpl;
+import it.unibo.mvc.controller.impl.config.YamlConfigBuilder;
 import it.unibo.mvc.model.DrawResult;
 import it.unibo.mvc.view.api.DrawNumberView;
 import it.unibo.mvc.view.api.DrawNumberViewObserver;
@@ -15,9 +18,7 @@ import it.unibo.mvc.view.impl.DrawNumberViewImpl;
  */
 public final class DrawNumberApp implements DrawNumberViewObserver {
 
-    private static final int MIN = 0;
-    private static final int MAX = 100;
-    private static final int ATTEMPTS = 10;
+    private static final String CONFIG_FILE_RESOURCE = "config.yml";
 
     private final DrawNumber model;
     private final List<DrawNumberView> views;
@@ -25,12 +26,16 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
     /**
      * @param views the views to attach
      */
-    public DrawNumberApp(final DrawNumberView... views) {
+    public DrawNumberApp(final Configuration config, final DrawNumberView... views) {
         /*
          * Side-effect proof
          */
         this.views = Arrays.asList(Arrays.copyOf(views, views.length));
-        this.model = new DrawNumberImpl(MIN, MAX, ATTEMPTS);
+        this.model = new DrawNumberImpl(
+            config.getMin(), 
+            config.getMax(), 
+            config.getAttempts()
+        );
     }
 
     /**
@@ -75,10 +80,14 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
 
     /**
      * @param args ignored
-     * @throws FileNotFoundException
+     * @throws IOException 
+     * @throws URISyntaxException 
      */
-    public static void main(final String... args) throws FileNotFoundException {
-        final var app = new DrawNumberApp(new DrawNumberViewImpl());
+    public static void main(final String... args) throws URISyntaxException, IOException {
+        final var app = new DrawNumberApp(
+            new YamlConfigBuilder().getConfiguration(CONFIG_FILE_RESOURCE),
+            new DrawNumberViewImpl()
+        );
         app.start();
     }
 

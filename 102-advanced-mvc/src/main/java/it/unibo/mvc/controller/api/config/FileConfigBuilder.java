@@ -5,16 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public interface ConfigFile {
-
-    /**
-     * Set read property on config builder.
-     * 
-     * @param key read key
-     * @param value read value
-     * @param builder builder to change
-     */
-    void setProperty(String key, String value, Configuration.Builder builder);
+public interface FileConfigBuilder {
 
     /**
      * Get configuration from file
@@ -39,4 +30,5 @@ public interface ConfigFile {
         final var file = new File(ClassLoader.getSystemResource(resourceName).toURI());
         return this.getConfiguration(file);
     }
+    
 }

@@ -7,18 +7,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
 
-import it.unibo.mvc.controller.api.config.ConfigFile;
+import it.unibo.mvc.controller.api.config.FileConfigBuilder;
 import it.unibo.mvc.controller.api.config.Configuration;
 import it.unibo.mvc.controller.api.config.Configuration.Builder;
 
-public class YamlConfigFile implements ConfigFile {
+public class YamlConfigBuilder implements FileConfigBuilder {
     
     private static final String YAML_KEY_VAL_SEP = ": ";
-    private static final String MAX_KEY = "max";
-    private static final String MIN_KEY = "min";
+    private static final String MAX_KEY = "maximum";
+    private static final String MIN_KEY = "minimum";
     private static final String ATTEMPTS_KEY = "attempts";
-
-    private YamlConfigFile() {}
 
     @Override
     public Configuration getConfiguration(final File file) throws FileNotFoundException, IOException {
@@ -36,15 +34,14 @@ public class YamlConfigFile implements ConfigFile {
                 }
                 final String key = splittedLine[0].trim();
                 final String value = splittedLine[1].trim();
-                setProperty(key, value, configBuilder);
+                setConfigProperty(key, value, configBuilder);
             }
         }
 
         return configBuilder.build();
     }
 
-    @Override
-    public void setProperty(final String key, final String value, final Builder builder) {
+    public void setConfigProperty(final String key, final String value, final Builder builder) {
         Objects.requireNonNull(key);
         Objects.requireNonNull(value);
         Objects.requireNonNull(builder);
