@@ -34,8 +34,8 @@ public class YamlConfigFile implements ConfigFile {
                 if (splittedLine.length < 2) {
                     throw new IllegalArgumentException(line + " is not valid YAML syntax");
                 }
-                final String key = splittedLine[0];
-                final String value = splittedLine[1];
+                final String key = splittedLine[0].trim();
+                final String value = splittedLine[1].trim();
                 setProperty(key, value, configBuilder);
             }
         }
