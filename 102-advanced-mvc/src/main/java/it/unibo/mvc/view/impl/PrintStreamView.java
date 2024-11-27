@@ -53,7 +53,7 @@ public final class PrintStreamView implements DrawNumberView {
 
     @Override
     public void numberIncorrect() {
-        out.println("You must enter a number");
+        out.println("You number is incorrect");
     }
 
     @Override

@@ -13,12 +13,14 @@ import it.unibo.mvc.model.DrawResult;
 import it.unibo.mvc.view.api.DrawNumberView;
 import it.unibo.mvc.view.api.DrawNumberViewObserver;
 import it.unibo.mvc.view.impl.DrawNumberViewImpl;
+import it.unibo.mvc.view.impl.PrintStreamView;
 
 /**
  */
 public final class DrawNumberApp implements DrawNumberViewObserver {
 
     private static final String CONFIG_FILE_RESOURCE = "config.yml";
+    private static final String LOG_FILE = "app.log";
 
     private final DrawNumber model;
     private final List<DrawNumberView> views;
@@ -86,7 +88,10 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
     public static void main(final String... args) throws URISyntaxException, IOException {
         final var app = new DrawNumberApp(
             new YamlConfigBuilder().getConfiguration(CONFIG_FILE_RESOURCE),
-            new DrawNumberViewImpl()
+            new DrawNumberViewImpl(), // GUI 1
+            new DrawNumberViewImpl(), // GUI 2
+            new PrintStreamView(LOG_FILE), // File log
+            new PrintStreamView(System.out) // Console log
         );
         app.start();
     }
