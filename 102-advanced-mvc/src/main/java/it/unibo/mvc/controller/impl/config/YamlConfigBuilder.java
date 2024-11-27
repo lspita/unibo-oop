@@ -21,7 +21,7 @@ public class YamlConfigBuilder implements FileConfigBuilder {
     @Override
     public Configuration getConfiguration(final File file) throws FileNotFoundException, IOException {
         Objects.requireNonNull(file);
-        final var configBuilder = new Configuration.Builder();
+        var configBuilder = new Configuration.Builder();
 
         try (
             BufferedReader reader = new BufferedReader(new FileReader(file))
@@ -34,24 +34,24 @@ public class YamlConfigBuilder implements FileConfigBuilder {
                 }
                 final String key = splittedLine[0].trim();
                 final String value = splittedLine[1].trim();
-                setConfigProperty(key, value, configBuilder);
+                configBuilder = setConfigProperty(key, value, configBuilder);
             }
         }
 
         return configBuilder.build();
     }
 
-    public void setConfigProperty(final String key, final String value, final Builder builder) {
+    private Builder setConfigProperty(final String key, final String value, final Builder builder) {
         Objects.requireNonNull(key);
         Objects.requireNonNull(value);
         Objects.requireNonNull(builder);
         
-        switch (key) {
+        return switch (key) {
             case MAX_KEY -> builder.setMax(Integer.parseInt(value));
             case MIN_KEY -> builder.setMin(Integer.parseInt(value));
             case ATTEMPTS_KEY -> builder.setAttempts(Integer.parseInt(value));
             default -> throw new IllegalArgumentException("Invalid prop key");
-        }
+        };
     }
     
 }
