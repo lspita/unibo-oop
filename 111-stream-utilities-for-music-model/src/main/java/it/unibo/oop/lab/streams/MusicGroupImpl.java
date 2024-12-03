@@ -57,7 +57,7 @@ public final class MusicGroupImpl implements MusicGroup {
 
     @Override
     public int countSongs(final String albumName) {
-        return (int)this.songsInAlbum(albumName).count();
+        return (int) this.songsInAlbum(albumName).count();
 
     }
 
@@ -69,8 +69,8 @@ public final class MusicGroupImpl implements MusicGroup {
     @Override
     public OptionalDouble averageDurationOfSongs(final String albumName) {
         return OptionalDouble.of(
-            this.songsInAlbum(albumName)
-                .collect(Collectors.averagingDouble(Song::getDuration))
+                this.songsInAlbum(albumName)
+                        .collect(Collectors.averagingDouble(Song::getDuration))
         );
     }
 
@@ -84,10 +84,12 @@ public final class MusicGroupImpl implements MusicGroup {
     @Override
     public Optional<String> longestAlbum() {
         return this.songs.stream()
-                .collect(Collectors.groupingBy(
-                    Song::getAlbumName,
-                    Collectors.summingDouble(Song::getDuration)
-                ))
+                .collect(
+                        Collectors.groupingBy(
+                                Song::getAlbumName,
+                                Collectors.summingDouble(Song::getDuration)
+                        )
+                )
                 .entrySet().stream()
                 .max(Comparator.comparing(Map.Entry::getValue))
                 .map(Map.Entry::getKey).orElse(Optional.empty());
