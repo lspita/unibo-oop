@@ -3,7 +3,6 @@ package it.unibo.oop.reactivegui02;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.Executors;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
