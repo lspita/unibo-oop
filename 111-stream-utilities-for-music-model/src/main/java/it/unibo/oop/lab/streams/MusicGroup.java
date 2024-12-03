@@ -11,20 +11,15 @@ public interface MusicGroup {
 
     /**
      *
-     * @param albumName
-     *            album name
-     * @param year
-     *            album year
+     * @param albumName album name
+     * @param year album year
      */
     void addAlbum(String albumName, int year);
 
     /**
-     * @param songName
-     *            song title
-     * @param albumName
-     *            album name
-     * @param duration
-     *            duration
+     * @param songName song title
+     * @param albumName album name
+     * @param duration duration
      */
     void addSong(String songName, Optional<String> albumName, double duration);
 
@@ -39,15 +34,13 @@ public interface MusicGroup {
     Stream<String> albumNames();
 
     /**
-     * @param year
-     *            the year
+     * @param year the year
      * @return all the albums in the given year
      */
     Stream<String> albumInYear(int year);
 
     /**
-     * @param albumName
-     *            album name
+     * @param albumName album name
      * @return number of songs
      */
     int countSongs(String albumName);
@@ -58,8 +51,7 @@ public interface MusicGroup {
     int countSongsInNoAlbum();
 
     /**
-     * @param albumName
-     *            the album name
+     * @param albumName the album name
      * @return average track length for the album
      */
     OptionalDouble averageDurationOfSongs(String albumName);
