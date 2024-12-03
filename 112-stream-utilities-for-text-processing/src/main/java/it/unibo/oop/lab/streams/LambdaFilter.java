@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
- * Modify this small program adding new filters.
- * Realize this exercise using as much as possible the Stream library.
+ * Modify this small program adding new filters. Realize this exercise using as
+ * much as possible the Stream library.
  *
  * 1) Convert to lowercase
  *
@@ -26,8 +26,9 @@ import javax.swing.JTextArea;
  * 3) Count the number of lines
  *
  * 4) List all the words in alphabetical order
- * 
- * 5) Write the count for each word, e.g. "word word pippo" should output "pippo -> 1 word -> 2"
+ *
+ * 5) Write the count for each word, e.g. "word word pippo" should output "pippo
+ * -> 1 word -> 2"
  *
  */
 public final class LambdaFilter extends JFrame {
