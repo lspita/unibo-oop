@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -39,7 +41,25 @@ public final class LambdaFilter extends JFrame {
         /**
          * Commands.
          */
-        IDENTITY("No modifications", Function.identity());
+        IDENTITY("No modifications", Function.identity()),
+        LOWERCASE("Lowercase", String::toLowerCase),
+        CHARS("Number of chars", s -> Long.toString(s.chars().count())),
+        LINES("Number of lines", s -> Long.toString(s.lines().count())),
+        SORTED_WORDS(
+            "Words in alphabetical order",
+            s -> streamToString(wordsStream(s).sorted())
+        ),
+        WORDS_COUNT(
+            "Count of each word",
+            s -> streamToString(
+                wordsStream(s)
+                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                    .entrySet().stream()
+                    .map(e -> e.getKey() + " -> " + e.getValue())
+            )
+        );
+
+        private static final String WHITESPACE_REGEX = "\\s+";
 
         private final String commandName;
         private final Function<String, String> fun;
@@ -50,12 +70,21 @@ public final class LambdaFilter extends JFrame {
         }
 
         @Override
+
         public String toString() {
             return commandName;
         }
 
         public String translate(final String s) {
             return fun.apply(s);
+        }
+
+        private static Stream<String> wordsStream(final String s) {
+            return Stream.of(s.split(Command.WHITESPACE_REGEX));
+        }
+
+        private static String streamToString(final Stream<? extends CharSequence> s) {
+            return String.join(System.lineSeparator(), s.toList());
         }
     }
 
