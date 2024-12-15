@@ -1,0 +1,4 @@
+* text=auto eof=lf
+*.[cC][mM][dD] text eof=crlf
+*.[bB][aA][tT] text eof=crlf
+*.[pP][sS]1 text eof=crlf
