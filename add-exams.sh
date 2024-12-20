@@ -20,7 +20,7 @@ git merge --allow-unrelated-histories ${REMOTE_NAME}/${EXAMS_BRANCH} -m "${AUTO_
 git remote rm ${REMOTE_NAME}
 
 # Setup
-SETUP_COMMAND="wget -P lib ${JUNIT_SOURCE}"
+SETUP_COMMAND="wget -c -P lib ${JUNIT_SOURCE}"
 eval "${SETUP_COMMAND}"
 
 # Create README
