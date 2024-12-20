@@ -53,8 +53,11 @@ echo "javac -d \${EXAM}/bin \${EXAM}/\${EXERCISE}/*.java"
 echo "java -cp \${EXAM}/bin \${EXAM}.\${EXERCISE}.\${MAINCLASS}.java"
 echo "\`\`\`";) > README.md
 
+# Remove this script
+rm add-exams.sh
+
 git add .
-git commit -m "${AUTO_COMMITS_PREFIX} Updated README"
+git commit -m "${AUTO_COMMITS_PREFIX} initial commit"
 
 git branch
 echo -n "Press enter to push:"
