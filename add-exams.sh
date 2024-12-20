@@ -19,8 +19,8 @@ git merge --allow-unrelated-histories ${REMOTE_NAME}/master -m "${AUTO_COMMITS_P
 git remote rm ${REMOTE_NAME}
 
 # Setup
-wget -P lib https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar
-SETUP_COMMAND="!!"
+SETUP_COMMAND="wget -P lib https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar"
+eval "${SETUP_COMMAND}"
 
 # Create README
 (echo "# OOP ${EXAMS_YEAR} exams";
