@@ -56,6 +56,6 @@ echo "\`\`\`";) > README.md
 git add .
 git commit -m "${AUTO_COMMITS_PREFIX} Updated README"
 
-echo -n "Press enter to push"
+echo -n "Press enter to push:"
 read 
 git push -u origin ${BRANCH_NAME}
