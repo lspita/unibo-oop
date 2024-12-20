@@ -6,20 +6,21 @@ if [ ! $# -eq 1 ]; then
 fi
 
 EXAMS_YEAR=$1
+EXAMS_BRANCH=${2:-"master"}
+JUNIT_SOURCE=${3:-"https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar"}
 REMOTE_NAME=oop-exams${EXAMS_YEAR}
 BRANCH_NAME=exams-${EXAMS_YEAR}
-ORIGIN_EXAMS_ROOT=origin/exams-root
 AUTO_COMMITS_PREFIX="[AUTO]"
 
 # Create git branch
 git remote add ${REMOTE_NAME} https://bitbucket.org/mviroli/oop${EXAMS_YEAR}-esami.git
 git fetch ${REMOTE_NAME}
-git checkout -b ${BRANCH_NAME} ${ORIGIN_EXAMS_ROOT}
-git merge --allow-unrelated-histories ${REMOTE_NAME}/master -m "${AUTO_COMMITS_PREFIX} merged exam ${EXAMS_YEAR} sources"
+git checkout -b ${BRANCH_NAME}
+git merge --allow-unrelated-histories ${REMOTE_NAME}/${EXAMS_BRANCH} -m "${AUTO_COMMITS_PREFIX} merged exam ${EXAMS_YEAR} sources"
 git remote rm ${REMOTE_NAME}
 
 # Setup
-SETUP_COMMAND="wget -P lib https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar"
+SETUP_COMMAND="wget -P lib ${JUNIT_SOURCE}"
 eval "${SETUP_COMMAND}"
 
 # Create README
@@ -54,7 +55,7 @@ echo "java -cp \${EXAM}/bin \${EXAM}.\${EXERCISE}.\${MAINCLASS}.java"
 echo "\`\`\`";) > README.md
 
 # Remove this script
-rm add-exams.sh
+rm $(basename "$0")
 
 git add .
 git commit -m "${AUTO_COMMITS_PREFIX} initial commit"
