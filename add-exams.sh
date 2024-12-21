@@ -24,35 +24,36 @@ SETUP_COMMAND="wget -c -P lib ${JUNIT_SOURCE}"
 eval "${SETUP_COMMAND}"
 
 # Create README
-(echo "# OOP ${EXAMS_YEAR} exams";
-echo "";
-echo "## Setup";
-echo "";
-echo "\`\`\`sh";
-echo "${SETUP_COMMAND}";
-echo "\`\`\`";
-echo "";
-echo "## Compile & Run";
-echo "";
-echo "### JUnit exercises";
-echo "";
-echo "Only compile, run tests using VSCode integration";
-echo "";
-echo "\`\`\`sh";
-echo "EXAM=a01";
-echo "EXERCISE=e1";
-echo "javac -cp lib/*.jar -d \${EXAM}/bin \${EXAM}/\${EXERCISE}/*.java"
-echo "\`\`\`";
-echo "";
-echo "### Swing GUI exercises";
-echo "";
-echo "\`\`\`sh";
-echo "EXAM=a01";
-echo "EXERCISE=e2";
-echo "MAINCLASS=Test"
-echo "javac -d \${EXAM}/bin \${EXAM}/\${EXERCISE}/*.java"
-echo "java -cp \${EXAM}/bin \${EXAM}.\${EXERCISE}.\${MAINCLASS}.java"
-echo "\`\`\`";) > README.md
+echo "# OOP ${EXAMS_YEAR} exams
+
+## Setup
+
+\`\`\`sh
+${SETUP_COMMAND}
+\`\`\`
+
+## Compile & Run
+
+### JUnit exercises
+
+Only compile, run tests using VSCode integration
+
+\`\`\`sh
+EXAM=a01
+EXERCISE=e1
+javac -cp lib/*.jar -d \${EXAM}/bin \${EXAM}/\${EXERCISE}/*.java
+\`\`\`
+
+### Swing GUI exercises
+
+\`\`\`sh
+EXAM=a01
+EXERCISE=e2
+MAINCLASS=Test
+javac -d \${EXAM}/bin \${EXAM}/\${EXERCISE}/*.java
+java -cp \${EXAM}/bin \${EXAM}.\${EXERCISE}.\${MAINCLASS}.java
+\`\`\`
+" > README.md
 
 # Remove this script
 rm $(basename "$0")
