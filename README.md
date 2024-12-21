@@ -2,7 +2,7 @@
 
 ```sh
 chmod u+x ./add-exams.sh
-./add-exams.sh 2023
+./add-exam.sh 2023
 ```
 
 Arguments
