@@ -12,6 +12,11 @@ REMOTE_NAME=oop-exams${EXAMS_YEAR}
 BRANCH_NAME=exams-${EXAMS_YEAR}
 AUTO_COMMITS_PREFIX="[AUTO]"
 
+if [[ git branch -a | grep -c "${BRANCH_NAME}" -gt 0 ]]; then
+    echo "Branch ${BRANCH_NAME} already present" 1>&2
+    exit 1
+fi
+
 # Create git branch
 git remote add ${REMOTE_NAME} https://bitbucket.org/mviroli/oop${EXAMS_YEAR}-esami.git
 git fetch ${REMOTE_NAME}
