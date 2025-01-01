@@ -34,8 +34,8 @@ eval "${SETUP_COMMAND}"
 BASE_STATS="\n- Time to complete: N/A\n"
 for exam in `find . -mindepth 1 -maxdepth 1 -type d -name "${EXAMS_DIR_REGEX}`; do    
     EXAM_RESULTS_FILE=${exam}/${EXERCISES_RESULTS_FILE}
-    echo -e "# Results\n${BASE_STATS}" > ${EXAM_RESULTS_FILE}
-    for exercise in `find ${exam} -mindepth 1 -maxdepth 1 -type d -name "${EXERCISES_DIR_REGEX}`; do
+    echo -e "# Results for `basename ${exam}`\n${BASE_STATS}" > ${EXAM_RESULTS_FILE}
+    for exercise in `find ${exam} -mindepth 1 -maxdepth 1 -type d -name "${EXERCISES_DIR_REGEX}"`; do
         echo -e "## `basename ${exercise}`\n${BASE_STATS}" >> ${EXAM_RESULTS_FILE}
     done
 done
