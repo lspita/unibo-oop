@@ -8,6 +8,7 @@ fi
 EXAMS_YEAR=$1
 EXAMS_BRANCH=${2:-"master"}
 JUNIT_SOURCE=${3:-"https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar"}
+EXAMS_DIR_REGEX=${4:-"a*"}
 REMOTE_NAME=oop-exams${EXAMS_YEAR}
 BRANCH_NAME=exams-${EXAMS_YEAR}
 AUTO_COMMITS_PREFIX="[AUTO]"
@@ -22,11 +23,16 @@ git remote rm ${REMOTE_NAME}
 # Setup
 SETUP_COMMAND="wget -c -P lib ${JUNIT_SOURCE}"
 eval "${SETUP_COMMAND}"
+for dir in `find . -maxdepth 1 -type d -name "${EXAMS_DIR_REGEX}"`; do
+    cp -r lib ${dir}
+done
 
 # Create README
 echo "# OOP ${EXAMS_YEAR} exams
 
 ## Setup
+
+Download JUnit library in the VSCode workspace directory 
 
 \`\`\`sh
 ${SETUP_COMMAND}
