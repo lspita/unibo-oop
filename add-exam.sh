@@ -13,7 +13,6 @@ BRANCH_NAME=exams-${EXAMS_YEAR}
 AUTO_COMMITS_PREFIX="[AUTO]"
 EXAMS_DIR_REGEX="a*"
 EXERCISES_DIR_REGEX="e*"
-EXERCISES_RESULTS_FILE="RESULTS.md"
 
 if [[ `git branch -a | grep -c "${BRANCH_NAME}"` -gt 0 ]]; then
     echo "Branch ${BRANCH_NAME} already present" 1>&2
@@ -33,7 +32,7 @@ eval "${SETUP_COMMAND}"
 
 BASE_STATS="\n- Time to complete: N/A\n"
 for exam in `find . -mindepth 1 -maxdepth 1 -type d -name "${EXAMS_DIR_REGEX}"`; do
-    EXAM_RESULTS_FILE=${exam}/${EXERCISES_RESULTS_FILE}
+    EXAM_RESULTS_FILE=${exam}/README.md
     echo -e "# Results for `basename ${exam}`\n${BASE_STATS}" > ${EXAM_RESULTS_FILE}
     for exercise in `find ${exam} -mindepth 1 -maxdepth 1 -type d -name "${EXERCISES_DIR_REGEX}"`; do
         echo -e "## `basename ${exercise}`\n${BASE_STATS}" >> ${EXAM_RESULTS_FILE}
