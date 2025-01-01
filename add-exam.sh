@@ -11,6 +11,9 @@ JUNIT_SOURCE=${3:-"https://repo1.maven.org/maven2/org/junit/platform/junit-platf
 REMOTE_NAME=oop-exams${EXAMS_YEAR}
 BRANCH_NAME=exams-${EXAMS_YEAR}
 AUTO_COMMITS_PREFIX="[AUTO]"
+EXAMS_DIR_REGEX="a*"
+EXERCISES_DIR_REGEX="e*"
+EXERCISES_RESULTS_FILE="RESULTS.md"
 
 if [[ `git branch -a | grep -c "${BRANCH_NAME}"` -gt 0 ]]; then
     echo "Branch ${BRANCH_NAME} already present" 1>&2
@@ -27,6 +30,15 @@ git remote rm ${REMOTE_NAME}
 # Setup
 SETUP_COMMAND="wget -c -P lib ${JUNIT_SOURCE}"
 eval "${SETUP_COMMAND}"
+
+BASE_STATS="\n- Time to complete: N/A\n"
+for exam in `find . -mindepth 1 -maxdepth 1 -type d -name "${EXAMS_DIR_REGEX}`; do    
+    EXAM_RESULTS_FILE=${exam}/${EXERCISES_RESULTS_FILE}
+    echo -e "# Results\n${BASE_STATS}" > ${EXAM_RESULTS_FILE}
+    for exercise in `find ${exam} -mindepth 1 -maxdepth 1 -type d -name "${EXERCISES_DIR_REGEX}`; do
+        echo -e "## `basename ${exercise}`\n${BASE_STATS}" >> ${EXAM_RESULTS_FILE}
+    done
+done
 
 # Create README
 echo "# OOP ${EXAMS_YEAR} exams
