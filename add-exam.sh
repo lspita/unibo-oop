@@ -69,7 +69,7 @@ EXAM=a01
 EXERCISE=e2
 MAINCLASS=Test
 javac -d \${EXAM}/bin \${EXAM}/\${EXERCISE}/*.java
-java -cp \${EXAM}/bin \${EXAM}.\${EXERCISE}.\${MAINCLASS}.java
+java -cp \${EXAM}/bin \${EXAM}.\${EXERCISE}.\${MAINCLASS}
 \`\`\`
 " > README.md
 
