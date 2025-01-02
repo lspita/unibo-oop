@@ -5,7 +5,7 @@
 Download JUnit library 
 
 ```sh
-wget -c -P lib https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar
+wget -cP lib https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar
 ```
 
 ## Compile & Run
