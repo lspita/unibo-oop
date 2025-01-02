@@ -36,7 +36,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		//this.factory = new ListBuilderFactoryImpl();
+		this.factory = new ListBuilderFactoryImpl();
 	}
 
 	@org.junit.Test
