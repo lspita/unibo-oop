@@ -38,7 +38,7 @@ public class Test {
 	
 	@org.junit.Before
 	public void initFactory() {
-		// this.factory = new TimeSheetFactoryImpl();
+		this.factory = new TimeSheetFactoryImpl();
 	}
 	
 	@org.junit.Test
