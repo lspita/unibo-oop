@@ -33,7 +33,7 @@ public class Test {
 
 	@org.junit.Before
 	public void init() {
-		//this.factory = new FlattenerFactoryImpl();
+		this.factory = new FlattenerFactoryImpl();
 	}
 
 	@org.junit.Test
