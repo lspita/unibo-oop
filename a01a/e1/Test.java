@@ -33,7 +33,7 @@ public class Test {
 
 	@org.junit.Before
 	public void init() {
-		//this.factory = new SubsequenceCombinerFactoryImpl();
+		this.factory = new SubsequenceCombinerFactoryImpl();
 	}
 
 	@org.junit.Test
