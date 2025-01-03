@@ -34,7 +34,7 @@ public class Test {
 
 	@org.junit.Before
 	public void init() {
-		//this.factory = new RecursiveIteratorHelpersImpl();
+		this.factory = new RecursiveIteratorHelpersImpl();
 	}
 
 	@org.junit.Test
