@@ -57,7 +57,7 @@ ${SETUP_COMMAND}
 Only compile, run tests using VSCode integration
 
 \`\`\`sh
-EXAM=a01
+EXAM=a01a
 EXERCISE=e1
 javac -cp lib/*.jar -d \${EXAM}/bin \${EXAM}/\${EXERCISE}/*.java
 \`\`\`
