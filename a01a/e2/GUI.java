@@ -2,11 +2,9 @@ package a01a.e2;
 
 import javax.swing.*;
 
-import a01a.e2.Logics.CellState;
 import a01a.e2.Logics.Position;
 
 import java.util.*;
-import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
