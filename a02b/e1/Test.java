@@ -34,7 +34,7 @@ public class Test {
 
 	@org.junit.Before
 	public void init() {
-		//this.helpers = new CursorHelpersImpl();
+		this.helpers = new CursorHelpersImpl();
 	}
 
 	@org.junit.Test
