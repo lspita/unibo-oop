@@ -36,7 +36,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		//this.factory = new ReplacersFactoryImpl();
+		this.factory = new ReplacersFactoryImpl();
 	}
 
 	@org.junit.Test
