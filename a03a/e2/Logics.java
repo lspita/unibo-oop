@@ -1,7 +1,5 @@
 package a03a.e2;
 
-import java.util.List;
-
 public interface Logics {
     
     record Position(int x, int y) {}

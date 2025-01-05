@@ -1,7 +1,6 @@
 package a03a.e1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -36,6 +35,10 @@ public class WindowingFactoryImpl implements WindowingFactory {
         );
     }
 
+    private <X> List<X> concat(final List<X> list, final X x) {
+        return Stream.concat(list.stream(), Stream.of(x)).toList();
+    }
+
     @Override
     public <X> Windowing<X, X> trivial() {
         return x -> Optional.of(x);
@@ -49,26 +52,20 @@ public class WindowingFactoryImpl implements WindowingFactory {
         );
     }
 
-    private <X> Stream<X> lastNStream(final List<X> inputs, final X x, final int n) {
-        return Stream.concat(
-            inputs.subList(inputs.size() - n + 1, inputs.size()).stream(),
-            Stream.of(x)
-        );
+    private <X> List<X> lastN(final List<X> inputs, final X x, final int n) {
+        final var list = concat(inputs, x);
+        return list.subList(list.size() - n, list.size());
     }
 
     private Integer listSum(final List<Integer> list) {
-        return streamSum(list.stream());
-    }
-
-    private Integer streamSum(final Stream<Integer> stream) {
-        return stream.collect(Collectors.summingInt(Integer::valueOf));
+        return list.stream().collect(Collectors.summingInt(Integer::valueOf));
     }
 
     @Override
     public Windowing<Integer, Integer> sumLastFour() {
         return ofMemory(
             (inputs, x) -> inputs.size() >= 3,
-            (inputs, x) -> streamSum(lastNStream(inputs, x, 4))
+            (inputs, x) -> listSum(lastN(inputs, x, 4))
         );
     }
 
@@ -76,18 +73,21 @@ public class WindowingFactoryImpl implements WindowingFactory {
     public <X> Windowing<X, List<X>> lastN(final int n) {
         return ofMemory(
             (inputs, x) -> inputs.size() >= n - 1,
-            (inputs, x) -> lastNStream(inputs, x, n).toList()
+            (inputs, x) -> lastN(inputs, x, n)
         );
     }
 
     @Override
     public Windowing<Integer, List<Integer>> lastWhoseSumIsAtLeast(final int n) {
         return ofMemoryOptional(
-            (inputs, x) -> listSum(inputs) == n,
-            (inputs, x) -> Stream.iterate(inputs.size() - 1, i -> i >= 0, i -> i - 1)
-                .map(i -> inputs.subList(i, inputs.size()))
-                .filter(subList -> listSum(subList) >= n)
-                .findFirst()
+            (inputs, x) -> listSum(concat(inputs, x)) >= n,
+            (inputs, x) -> {
+                final var list = concat(inputs, x);
+                return Stream.iterate(list.size() - 1, i -> i >= 0, i -> i - 1)
+                    .map(i -> list.subList(i, list.size()))
+                    .filter(subList -> listSum(subList) >= n)
+                    .findFirst();
+            }
         );
     }
 

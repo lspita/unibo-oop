@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.random.RandomGenerator;
-import java.util.stream.Stream;
 
 public class LogicsImpl implements Logics {
 
     private static final RandomGenerator RANDOM = RandomGenerator.getDefault();
 
     private final Position goal;
-    private final int width;
     private final int height;
     private List<Position> trail = Collections.emptyList();
     
     public LogicsImpl(final int width, final int height) {
-        this.width = width;
         this.height = height;
         goal = new Position(width - 1, RANDOM.nextInt(height));
     }

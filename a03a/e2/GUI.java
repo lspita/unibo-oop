@@ -6,7 +6,6 @@ import a03a.e2.Logics.Cell;
 import a03a.e2.Logics.Position;
 
 import java.util.*;
-import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
