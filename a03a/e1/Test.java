@@ -33,7 +33,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		//this.factory = new WindowingFactoryImpl();
+		this.factory = new WindowingFactoryImpl();
 	}
 
 	@org.junit.Test
