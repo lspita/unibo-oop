@@ -37,7 +37,7 @@ public class Test {
 
 	@org.junit.Before
 	public void init() {
-		// this.factory = new FluentParserFactoryImpl();
+		this.factory = new FluentParserFactoryImpl();
 	}
 
 	@org.junit.Test
