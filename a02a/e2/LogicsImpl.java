@@ -57,7 +57,7 @@ public class LogicsImpl implements Logics {
             .map(m -> new MovementDestinationPair(m, snake.getLast().sum(m)))
             .filter(p -> isInBounds(p.destination()))
             .filter(p -> !snake.contains(p.destination()))
-            .findAny();
+            .findFirst();
         
         movement = pair.map(MovementDestinationPair::movement);
         return pair.map(MovementDestinationPair::destination);
