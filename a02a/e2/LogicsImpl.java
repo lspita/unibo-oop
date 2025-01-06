@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 
@@ -44,7 +43,8 @@ public class LogicsImpl implements Logics {
 
     @Override
     public Optional<Integer> getValue(final Position position) {
-        return snake.contains(position) ? Optional.of(snake.indexOf(position)) : Optional.empty();
+        final var index = snake.indexOf(position);
+        return index == -1 ? Optional.empty() : Optional.of(index);
     }
 
     private Optional<Position> nextPosition(final Position currentMovement) {
