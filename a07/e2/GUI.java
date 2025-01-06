@@ -1,16 +1,20 @@
 package a07.e2;
 
 import javax.swing.*;
+
+import a07.e2.Logics.Position;
+
 import java.util.*;
-import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
 
 public class GUI extends JFrame {
     
-    private final List<JButton> cells = new ArrayList<>();
+    private final Map<JButton, Position> cells = new HashMap<>();
+    private final Logics logics;
     
-    public GUI(int size) {
+    public GUI(final int size) {
+        logics = new LogicsImpl(size);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(100*size, 100*size);
         
@@ -19,20 +23,29 @@ public class GUI extends JFrame {
         
         ActionListener al = new ActionListener(){
             public void actionPerformed(ActionEvent e){
-        	    var button = (JButton)e.getSource();
-        	    var position = cells.indexOf(button);
-                button.setText(""+position);
+        	    final var position = cells.get((JButton)e.getSource());
+                logics.hit(position);
+                if (logics.isOver()) {
+                    System.exit(0);
+                }
+                updateCells();
             }
         };
                 
         for (int i=0; i<size; i++){
             for (int j=0; j<size; j++){
-                final JButton jb = new JButton(" ");
-                this.cells.add(jb);
-                jb.addActionListener(al);
-                panel.add(jb);
+                final var position = new Position(j, i);
+                final JButton button = new JButton();
+                this.cells.put(button, position);
+                button.addActionListener(al);
+                panel.add(button);
             }
         }
+        updateCells();
         this.setVisible(true);
-    }    
+    }
+
+    private void updateCells() {
+        cells.forEach((btn, pos) -> btn.setText(logics.isActive(pos) ? "*" : ""));
+    }
 }

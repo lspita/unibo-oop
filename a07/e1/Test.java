@@ -38,8 +38,8 @@ public class Test {
 
 	@org.junit.Before
 	public void init() {
-		//this.executor = new TaskExecutorImpl();
-		//this.taskFactory = new TaskFactoryImpl();
+		this.executor = new TaskExecutorImpl();
+		this.taskFactory = new TaskFactoryImpl();
 	}
 
 
