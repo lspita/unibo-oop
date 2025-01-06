@@ -35,7 +35,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		// this.factory = new TimetableFactoryImpl();
+		this.factory = new TimetableFactoryImpl();
 	}
 
 	// orario delle lezioni realistico (I semestre del II anno, appena concluso, senza i lab)
