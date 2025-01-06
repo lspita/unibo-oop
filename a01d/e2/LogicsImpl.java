@@ -56,8 +56,7 @@ public class LogicsImpl implements Logics {
             return Optional.of(Border.RIGHT);
         } else if (position.y() == 0) {
             return Optional.of(Border.TOP);
-        }
-        else if (position.y() == size - 1) {
+        } else if (position.y() == size - 1) {
             return Optional.of(Border.BOTTOM);
         }
         return Optional.empty();
@@ -71,7 +70,6 @@ public class LogicsImpl implements Logics {
         if (center.isEmpty()) {
             return Collections.emptyList();
         }
-
 
         return center.map(
             c -> Stream.iterate(c.x() - SQUARE_HALF_SIZE, x -> x <= c.x() + SQUARE_HALF_SIZE, x -> x + 1)
