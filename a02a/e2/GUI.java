@@ -23,7 +23,6 @@ public class GUI extends JFrame {
         this.getContentPane().add(panel);
         
         ActionListener al = e -> {
-            final var pos = cells.get((JButton) e.getSource());
             if (logics.next()) {
                 System.exit(0);
             }
