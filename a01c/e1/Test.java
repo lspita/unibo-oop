@@ -50,7 +50,7 @@ public class Test {
 	
 	@org.junit.Before
 	public void initFactory() {
-//		this.factory = new EventHistoryFactoryImpl();
+		this.factory = new EventHistoryFactoryImpl();
 	}
 	
 	@org.junit.Test
