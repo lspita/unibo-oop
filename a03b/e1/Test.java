@@ -35,7 +35,7 @@ public class Test {
 
 	@org.junit.Before
 	public void init() {
-		// this.factory = new LazyTreeFactoryImpl();
+		this.factory = new LazyTreeFactoryImpl();
 	}
 
 	@org.junit.Test
