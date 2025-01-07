@@ -33,7 +33,7 @@ public class Test {
 	
 	@org.junit.Before
 	public void initFactory() {
-		//this.gf = new GridFactoryImpl();
+		this.gf = new GridFactoryImpl();
 	}
 	
 	
