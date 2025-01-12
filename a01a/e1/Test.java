@@ -34,7 +34,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		// this.factory = new ComposableParserFactoryImpl();
+		this.factory = new ComposableParserFactoryImpl();
 	}
 
 	@org.junit.Test
