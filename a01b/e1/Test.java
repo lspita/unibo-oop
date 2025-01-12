@@ -34,7 +34,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		// this.factory = new IteratorsCombinersImpl();
+		this.factory = new IteratorsCombinersImpl();
 	}
 
 	// una utility per facilitare il testing, che converte iteratori in liste
