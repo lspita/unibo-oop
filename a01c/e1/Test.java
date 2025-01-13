@@ -33,7 +33,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		// this.factory = new SimpleIteratorFactoryImpl();
+		this.factory = new SimpleIteratorFactoryImpl();
 	}
 
 	// una utility per facilitare il testing, che verifica se i prossimi elementi generati dall'iteratore 
