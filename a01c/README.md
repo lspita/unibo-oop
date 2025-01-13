@@ -1,12 +1,12 @@
 # Results for a01c
 
-- Time to complete: N/A
+- Time to complete: 48m
 
 ## e1
 
-- Time to complete: N/A
+- Time to complete: 23m
 
 ## e2
 
-- Time to complete: N/A
+- Time to complete: 25m
 
