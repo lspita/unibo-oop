@@ -36,7 +36,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		// this.factory = new TimeSheetFactoryImpl();
+		this.factory = new TimeSheetFactoryImpl();
 	}
 
 	private List<Pair<String, String>> basicData(){
