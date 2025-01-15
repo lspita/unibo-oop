@@ -1,13 +1,12 @@
 # Results for a02a
 
-- Time to complete: 1h31
+- Time to complete: 50m
 
 ## e1
 
-- Time to complete: 32m
-- Factory join() could be implemented using fromElement and add
+- Time to complete: 18m
 
 ## e2
 
-- Time to complete: 59m
+- Time to complete: 32m
 
