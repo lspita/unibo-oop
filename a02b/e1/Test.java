@@ -35,7 +35,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		// this.factory = new RulesEngineFactoryImpl();
+		this.factory = new RulesEngineFactoryImpl();
 	}
 
 	@org.junit.Test
