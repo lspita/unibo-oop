@@ -1,13 +1,11 @@
 # Results for a02b
 
-- Time to complete: 1h47
+- Time to complete: 1h02
 
 ## e1
 
-- Time to complete: 42m (mandatory)
-- Not really generalized
+- Time to complete: 43m (mandatory)
 
 ## e2
 
-- Time to complete: 1h05
-- Useless to save all cells
+- Time to complete: 19m
