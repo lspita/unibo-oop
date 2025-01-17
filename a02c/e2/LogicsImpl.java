@@ -1,6 +1,5 @@
 package a02c.e2;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
