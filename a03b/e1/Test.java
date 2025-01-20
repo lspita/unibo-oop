@@ -34,7 +34,7 @@ public class Test {
 
 	@org.junit.Before
 	public void initFactory() {
-		//this.iih = new InfiniteIteratorHelpersImpl();
+		this.iih = new InfiniteIteratorHelpersImpl();
 	}
 
 	@org.junit.Test
