@@ -1,7 +1,5 @@
 package a04.e2;
 
-import static org.junit.jupiter.api.DynamicTest.stream;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.random.RandomGenerator;
