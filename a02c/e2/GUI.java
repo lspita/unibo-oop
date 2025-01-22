@@ -5,7 +5,6 @@ import javax.swing.*;
 import a02c.e2.Logics.Cell;
 
 import java.util.*;
-import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
