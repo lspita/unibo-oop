@@ -3,7 +3,6 @@ package a02c.e2;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
